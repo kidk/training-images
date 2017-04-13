@@ -2,5 +2,9 @@ FROM python:2-onbuild
 
 MAINTAINER Samuel Vandamme <samuel.vandamme@coscale.com>
 
+ENV WEB_HOST web
+ENV RECEIVER_HOST receiver
+
+
 CMD [ "python", "./main.py" ]
 

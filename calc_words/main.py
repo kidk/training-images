@@ -3,10 +3,10 @@ import MySQLdb
 import time
 import redis
 
-db = MySQLdb.connect(host="database", user="root", passwd="secret", db="my_db")        
+db = MySQLdb.connect(host=os.environ.get("DATABASE_HOST"), user=os.environ.get("DATABASE_USER"), passwd=os.environ.get("DATABASE_PASS"), db=os.environ.get("DATABASE_TABLE"))        
 cur = db.cursor()
 
-r = redis.StrictRedis(host='redis')
+r = redis.StrictRedis(host=os.environ.get("REDIS_HOST"))
 
 print "Starting calc_words job"
 

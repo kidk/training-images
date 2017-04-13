@@ -6,13 +6,13 @@ var path = require('path');
 
 var redis = require("redis"),
   client = redis.createClient({
-    "host": "redis"
+    "host": process.env.REDIS_HOST
   });
 
 var amqp = require('amqplib/callback_api');
 var channel;
 var q = 'messages';
-amqp.connect('amqp://rabbitmq', function (err, conn) {
+amqp.connect('amqp://' + process.env.RABBITMQ_HOST, function (err, conn) {
   conn.createChannel(function (err, ch) {
 
     ch.assertQueue(q, {

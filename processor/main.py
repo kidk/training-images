@@ -3,7 +3,7 @@ import pika
 import MySQLdb
 import time
 
-db = MySQLdb.connect(host="database", user="root", passwd="secret", db="my_db")        
+db = MySQLdb.connect(host=os.environ.get("DATABASE_HOST"), user=os.environ.get("DATABASE_USER"), passwd=os.environ.get("DATABASE_PASS"), db=os.environ.get("DATABASE_TABLE"))        
 
 # Create database for results
 cur = db.cursor()
@@ -11,7 +11,7 @@ cur.execute("CREATE TABLE IF NOT EXISTS words (`id` int NOT NULL AUTO_INCREMENT,
 
 # Connect to RabbitMQ
 connection = pika.BlockingConnection(pika.ConnectionParameters(
-        host='rabbitmq'))
+        host=os.environ.get("RABBITMQ_HOST")))
 channel = connection.channel()
 
 # Select queue

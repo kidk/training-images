@@ -1,6 +1,10 @@
 import time
 import requests
 import random
+import os
+
+WEB_HOST = os.environ.get("WEB_HOST")
+RECEIVER_HOST = os.environ.get("RECEIVER_HOST")
 
 # Read possible words
 with open('words.txt', 'r') as myfile:
@@ -26,12 +30,12 @@ def random_sentence():
 
 def request_get():
     print "get request"
-    requests.get("http://haproxy")
+    requests.get("http://%s" % WEB_HOST)
 
 def request_post():
     sentence = random_sentence()
     print "post request with word: %s" % sentence
-    requests.post("http://receiver/post", data={'text': sentence})
+    requests.post("http://%s/post" % RECEIVER_HOST, data={'text': sentence})
 
 
 while True:

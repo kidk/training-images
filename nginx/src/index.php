@@ -1,11 +1,12 @@
 <?php
+define('RECEIVER_HOST', getenv('RECEIVER_HOST'));
 
 if (isset($_POST['text'])) {
     $ch = curl_init();
 
     $data = json_encode(['text' => $_POST['text']]);
 
-    curl_setopt($ch, CURLOPT_URL,"http://receiver/post");
+    curl_setopt($ch, CURLOPT_URL,"http://".RECEIVER_HOST."/post");
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");  
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
@@ -30,10 +31,10 @@ if (isset($_POST['text'])) {
     die;
 }
 
-$data = file_get_contents('http://receiver/ranking');
+$data = file_get_contents('http://'.RECEIVER_HOST.'/ranking');
 $data = json_decode($data);
 
-$alfa = file_get_contents('http://receiver/letters');
+$alfa = file_get_contents('http://'.RECEIVER_HOST.'/letters');
 $alfa = json_decode($alfa);
 
 ?>
