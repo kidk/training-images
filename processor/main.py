@@ -2,6 +2,7 @@
 import pika
 import MySQLdb
 import time
+import os
 
 db = MySQLdb.connect(host=os.environ.get("DATABASE_HOST"), user=os.environ.get("DATABASE_USER"), passwd=os.environ.get("DATABASE_PASS"), db=os.environ.get("DATABASE_TABLE"))        
 

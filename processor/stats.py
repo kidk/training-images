@@ -4,8 +4,9 @@ import json
 import random
 import time
 import MySQLdb
+import os
 
-db = MySQLdb.connect(host="database", user="root", passwd="secret", db="my_db")        
+db = MySQLdb.connect(host=os.environ.get("DATABASE_HOST"), user=os.environ.get("DATABASE_USER"), passwd=os.environ.get("DATABASE_PASS"), db=os.environ.get("DATABASE_TABLE"))     
 cur = db.cursor()
 
 # Configuration mode: return the custom metrics data should be defined
