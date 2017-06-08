@@ -1,4 +1,4 @@
-FROM node:onbuild
+FROM node:6-onbuild
 
 MAINTAINER Samuel Vandamme <samuel.vandamme@coscale.com>
 
