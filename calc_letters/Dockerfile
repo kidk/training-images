@@ -10,3 +10,4 @@ ENV REDIS_HOST redis
 
 CMD [ "python", "./main.py" ]
 
+LABEL com.coscale.monitoring='[{"PluginType":"LOGPLUGIN","Configuration":{"MATCH":["\"/dev/stdout\" \"COUNTER\" \"Log lines\" \".*\" \"#\""]}}]'

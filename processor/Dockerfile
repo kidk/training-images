@@ -9,3 +9,5 @@ ENV DATABASE_TABLE my_db
 ENV RABBITMQ_HOST rabbitmq
 
 CMD [ "python", "./main.py" ]
+
+LABEL com.coscale.monitoring='[{"PluginType":"GENERICSCRIPT","Configuration":{"SCRIPT":["python /usr/src/app/stats.py"]}}]'
