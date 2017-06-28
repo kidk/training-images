@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: processor
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: processor
+    spec:
+      containers:
+      - name: processor
+        image: kidk/training-images-processor
+        env:
+        - name: DATABASE_HOST
+          value: mysql
+        - name: RABBITMQ_HOST
+          value: rabbitmq

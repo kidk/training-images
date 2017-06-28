@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: generator
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: generator
+    spec:
+      containers:
+      - name: generator
+        image: kidk/training-images-generator
+        env:
+        - name: WEB_HOST
+          value: nginx
+        - name: RECEIVER_HOST
+          value: receiver

@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: calcwords
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: calcwords
+    spec:
+      containers:
+      - name: calcwords
+        image: kidk/training-images-calc_words
+        imagePullPolicy: Always
+        env:
+        - name: DATABASE_HOST
+          value: mysql
+        - name: REDIS_HOST
+          value: redis
+        - name: LOOP
+          value: "True"
