@@ -89,7 +89,9 @@ public class App {
             int occurrences = wordOccurences.get(word);
             System.out.println(String.format("Processing word: %s (%d)", word, occurrences));
             for (char c : word.toLowerCase().toCharArray()) {
-                letterOccurences.put(c, letterOccurences.get(c) + occurrences);
+                if (letterOccurences.containsKey(c)) {
+                    letterOccurences.put(c, letterOccurences.get(c) + occurrences);
+                }
             }
         }
 
@@ -105,4 +107,3 @@ public class App {
     }
 
 }
-
