@@ -24,7 +24,6 @@ public class App {
         String redisHost = System.getenv("REDIS_HOST");
         String loop = System.getenv("LOOP");
 
-        Class.forName("com.mysql.jdbc.Driver");
         Connection dbConnection = DriverManager.getConnection(
                 String.format("jdbc:mysql://%s:3306/%s", dbHost, db), dbUser, dbPass);
 
