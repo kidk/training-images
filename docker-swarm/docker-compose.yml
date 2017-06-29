@@ -1,0 +1,144 @@
+version: "3"
+services:
+  generator:
+    image: kidk/training-images-generator
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    networks:
+    - demo-app
+
+    links: 
+    - web
+
+    environment:
+      WEB_HOST: web
+      RECEIVER_HOST: receiver
+
+  web:
+    image: kidk/training-images-nginx
+
+    deploy:
+      mode: replicated
+      replicas: 8
+
+    networks:
+      - demo-app
+    
+    ports:
+      - "80:80"
+
+    environment:
+      RECEIVER_HOST: receiver
+
+    links:
+      - receiver
+
+  receiver: 
+    image: kidk/training-images-receiver
+
+    deploy:
+      mode: global
+
+    networks:
+      - demo-app
+
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      REDIS_HOST: redis
+
+    links:
+      - rabbitmq
+      - redis
+  
+  rabbitmq:
+    image: kidk/training-images-rabbitmq
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    networks:
+      - demo-app
+    
+  redis:
+    image: redis
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    networks:
+      - demo-app
+
+  mysql:
+    image: kidk/training-images-mysql
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    networks:
+      - demo-app
+
+  processor:
+    image: kidk/training-images-processor
+
+    deploy: 
+      mode: replicated
+      replicas: 1
+    
+    networks:
+      - demo-app
+    
+    environment:
+      DATABASE_HOST: mysql
+      RABBITMQ_HOST: rabbitmq
+    
+    links:
+      - mysql
+      - rabbitmq
+
+  calcletters:
+    image: kidk/training-images-calc_letters
+
+    deploy: 
+      mode: replicated
+      replicas: 1
+    
+    networks:
+      - demo-app
+    
+    environment:
+      DATABASE_HOST: mysql
+      REDIS_HOST: redis
+      LOOP: "True"
+
+    links: 
+     - mysql
+     - redis
+
+  calcwords:
+    image: kidk/training-images-calc_words
+
+    deploy: 
+      mode: replicated
+      replicas: 1
+    
+    networks:
+      - demo-app
+    
+    environment:
+      DATABASE_HOST: mysql
+      REDIS_HOST: redis
+      LOOP: "True"
+
+    links: 
+     - mysql
+     - redis
+    
+networks:
+    demo-app:
+
