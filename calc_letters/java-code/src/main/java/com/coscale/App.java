@@ -24,6 +24,7 @@ public class App {
         String redisHost = System.getenv("REDIS_HOST");
         String loop = System.getenv("LOOP");
 
+        Class.forName("com.mysql.jdbc.Driver");
         Connection dbConnection = DriverManager.getConnection(
                 String.format("jdbc:mysql://%s:3306/%s", dbHost, db), dbUser, dbPass);
 
@@ -63,10 +64,12 @@ public class App {
             String word = rs.getString("word");
             int number = rs.getInt("number");
 
-            if (wordOccurences.containsKey(word)) {
-                wordOccurences.put(word, wordOccurences.get(word) + number);
-            } else {
-                wordOccurences.put(word, number);
+            if (word != null) {
+                if (wordOccurences.containsKey(word)) {
+                    wordOccurences.put(word, wordOccurences.get(word) + number);
+                } else {
+                    wordOccurences.put(word, number);
+                }
             }
         }
 
@@ -102,3 +105,4 @@ public class App {
     }
 
 }
+
