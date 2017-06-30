@@ -6,7 +6,7 @@ metadata:
     app: webhooks
 spec:
   ports:
-  - port: 5000
+  - port: 80
     protocol: TCP
   selector:
     app: webhooks
@@ -26,7 +26,7 @@ spec:
       - name: webhooks
         image: kidk/training-images-webhooks
         ports:
-        - containerPort: 5000
+        - containerPort: 80
         env:
         - name: FTP_URL
           value: ftp://debug-store/
