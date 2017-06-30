@@ -27,3 +27,6 @@ spec:
         image: kidk/training-images-webhooks
         ports:
         - containerPort: 5000
+        env:
+        - name: FTP_URL
+          value: ftp://debug-store/

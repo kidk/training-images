@@ -1,4 +1,4 @@
-import re, subprocess, time
+import re, subprocess, time, os
 from threading import Thread
 from flask import Flask, request
 
@@ -26,7 +26,7 @@ def take_heapdump(pod):
     filename     = '%s-%d.bin' % (pod, time.time())
     get_java_pid = 'ps aux | grep java | grep -v grep | awk "{ print \$2; }"'
     take_dump    = 'jmap -dump:format=b,file=%s $(%s)' % (filename, get_java_pid)
-    upload_dump  = 'curl -T %s ftp://bob:@192.168.220.196/' % filename
+    upload_dump  = 'curl -T %s %s' % (filename, os.environ.get("FTP_URL"))
     cleanup      = 'rm %s' % filename
 
     cmd = 'cd tmp; %s && %s ; %s' % (take_dump, upload_dump, cleanup)
