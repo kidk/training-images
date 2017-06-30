@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: webhooks
+  labels:
+    app: webhooks
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+  selector:
+    app: webhooks
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: webhooks
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: webhooks
+    spec:
+      containers:
+      - name: webhooks
+        image: kidk/training-images-webhooks
+        ports:
+        - containerPort: 5000

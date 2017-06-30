@@ -1,0 +1,8 @@
+The following format should be used in the CoScale UI:
+
+	{"action":"{ACTION}","token":"8d8efa2f-5fde-4d08-bb2d-6d227439e399","server":"{SUBJECT}"}
+
+
+The webhook can be tested with the following curl:
+
+	curl -X POST -d '{"action":"triggered","token":"8d8efa2f-5fde-4d08-bb2d-6d227439e399","server":"k8s_api_cs-api-ttq25_default_179592fc-2c1a-11e7-8f45-000d3a27567d"}' http://localhost:5000/debug/heapdump
