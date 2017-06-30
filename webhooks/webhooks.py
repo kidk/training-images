@@ -29,7 +29,7 @@ def take_heapdump(pod):
     upload_dump  = 'curl -T %s %s' % (filename, os.environ.get("FTP_URL"))
     cleanup      = 'rm %s' % filename
 
-    cmd = 'cd tmp; %s && %s ; %s' % (take_dump, upload_dump, cleanup)
+    cmd = 'cd /tmp; %s && %s ; %s' % (take_dump, upload_dump, cleanup)
 
     t = Thread(target=subprocess.run , args=(["kubectl", "exec", pod, "--", "/bin/bash", "-c", cmd],))
     t.start()
