@@ -17,3 +17,4 @@ spec:
         env:
         - name: RECEIVER_HOST
           value: receiver
+      imagePullPolicy: Always
