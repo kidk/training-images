@@ -12,5 +12,6 @@ spec:
       containers:
       - name: rabbitmq
         image: kidk/training-images-rabbitmq
+        imagePullPolicy: Always
         ports:
         - containerPort: 5672

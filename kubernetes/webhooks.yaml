@@ -25,6 +25,7 @@ spec:
       containers:
       - name: webhooks
         image: kidk/training-images-webhooks
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         env:

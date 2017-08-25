@@ -12,6 +12,7 @@ spec:
       containers:
       - name: processor
         image: kidk/training-images-processor
+        imagePullPolicy: Always
         env:
         - name: DATABASE_HOST
           value: mysql

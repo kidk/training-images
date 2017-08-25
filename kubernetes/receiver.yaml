@@ -12,6 +12,7 @@ spec:
       containers:
       - name: receiver
         image: kidk/training-images-receiver
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         env:

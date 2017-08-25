@@ -12,6 +12,7 @@ spec:
       containers:
       - name: generator
         image: kidk/training-images-generator
+        imagePullPolicy: Always
         env:
         - name: WEB_HOST
           value: nginx

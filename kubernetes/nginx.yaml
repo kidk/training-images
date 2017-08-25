@@ -12,9 +12,10 @@ spec:
       containers:
       - name: nginx
         image: kidk/training-images-nginx
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         env:
         - name: RECEIVER_HOST
           value: receiver
-      imagePullPolicy: Always
+      
