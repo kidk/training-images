@@ -46,8 +46,8 @@ while True:
     if timeInDay > (86400 / 2):
         timeInDay = 86400 - timeInDay
 
-    requests = int(round(timeInDay / 5400)) + 1
-    for number in range(0, requests):
+    numberOfRequests = int(round(timeInDay / 5400)) + 1
+    for number in range(0, numberOfRequests):
         request_get()
 
     # Submit data to the services
