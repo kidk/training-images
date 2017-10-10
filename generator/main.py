@@ -39,11 +39,18 @@ def request_post():
 
 
 while True:
-    # Do 10 request
+    # Do a certain number of requests depending on the time of day
     start = time.time()
-    for number in range(0, 9):
+
+    timeInDay = start % 86400
+    if timeInDay > (86400 / 2):
+        timeInDay = 86400 - timeInDay
+
+    requests = int(round(timeInDay / 5400)) + 1
+    for number in range(0, requests):
         request_get()
 
+    # Submit data to the services
     request_post()
     time_taken = int((time.time() - start) * 1000)
 
