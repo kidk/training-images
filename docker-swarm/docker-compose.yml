@@ -5,7 +5,7 @@ services:
 
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 4
 
     networks:
     - demo-app
@@ -22,7 +22,7 @@ services:
 
     deploy:
       mode: replicated
-      replicas: 8
+      replicas: 3
 
     networks:
       - demo-app
