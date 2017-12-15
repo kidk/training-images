@@ -10,6 +10,8 @@ spec:
       labels:
         name: cron-monitor
     spec:
+      tolerations:
+        - operator: "Exists"
       containers:
       - image: kidk/training-images-cron
         imagePullPolicy: Always
@@ -22,3 +24,4 @@ spec:
       - hostPath:
           path: /
         name: hostroot
+
