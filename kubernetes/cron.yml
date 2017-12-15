@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: cron-monitor
+  name: cron-monitor
+spec:
+  template:
+    metadata:
+      labels:
+        name: cron-monitor
+    spec:
+      containers:
+      - image: kidk/training-images-cron
+        imagePullPolicy: Always
+        name: cron-monitor
+        volumeMounts:
+        - name: hostroot
+          mountPath: /host
+          readOnly: true
+      volumes:
+      - hostPath:
+          path: /
+        name: hostroot

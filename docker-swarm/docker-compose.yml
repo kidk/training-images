@@ -138,6 +138,17 @@ services:
     links: 
      - mysql
      - redis
+
+  cron:
+    image: kidk/training-images-cron
+
+    deploy:
+      mode: global
+
+    volumes:
+    - /:/host:ro
+
+    
     
 networks:
     demo-app:
