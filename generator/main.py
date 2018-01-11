@@ -46,7 +46,7 @@ while True:
     if timeInDay > (86400 / 2):
         timeInDay = 86400 - timeInDay
 
-    numberOfRequests = int(round(timeInDay / 5400)) + 1
+    numberOfRequests = int(round(timeInDay / 1350)) + 1
     for number in range(0, numberOfRequests):
         request_get()
 
