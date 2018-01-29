@@ -14,7 +14,7 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-redis-cache": "^0.5.0",
-    "morgan": "^1.7.0",
+    "prom-client": "^10.2.2",
     "redis": "^2.6.3"
   }
 }

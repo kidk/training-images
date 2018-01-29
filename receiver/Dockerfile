@@ -5,4 +5,4 @@ MAINTAINER Samuel Vandamme <samuel.vandamme@coscale.com>
 ENV RABBITMQ_HOST rabbitmq
 ENV REDIS_HOST redis
 
-LABEL com.coscale.monitoring='[{"PluginType":"APACHE","Configuration":{"FILE":["\"/var/log/nodejs.log\" \"%V \"%r\" %D %s\""],"URL CHECK":["http://localhost/ranking"]}}]'
+LABEL com.coscale.monitoring='[{"PluginType":"PROMETHEUS","Configuration":{"STATS URL":["http://127.0.0.1/metrics"]}},{"PluginType":"ENDPOINTCHECKER","Configuration":{"ENDPOINT":["http://127.0.0.1/ranking"]}}]'
