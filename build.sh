@@ -14,7 +14,7 @@ function build {
 
   echo "Building $NAME"
   pushd $NAME
-  docker build --no-cache -t local/$NAME:latest .
+  docker build -t kidk/training-images-$NAME:latest .
   popd
   echo
 }
