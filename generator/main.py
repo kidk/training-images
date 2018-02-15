@@ -2,6 +2,7 @@ import time
 import requests
 import random
 import os
+import sys
 
 WEB_HOST = os.environ.get("WEB_HOST")
 RECEIVER_HOST = os.environ.get("RECEIVER_HOST")
@@ -29,13 +30,19 @@ def random_sentence():
     return result
 
 def request_get():
-    print "get request"
-    requests.get("http://%s" % WEB_HOST)
+    try:
+        print "get request"
+        requests.get("http://%s" % WEB_HOST)
+    except: # catch *all* exceptions
+        print "Exception: %s" % sys.exc_info()[0]
 
 def request_post():
-    sentence = random_sentence()
-    print "post request with word: %s" % sentence
-    requests.post("http://%s/post" % RECEIVER_HOST, data={'text': sentence})
+    try:
+        sentence = random_sentence()
+        print "post request with word: %s" % sentence
+        requests.post("http://%s/post" % RECEIVER_HOST, data={'text': sentence})
+    except: # catch *all* exceptions
+        print "Exception: %s" % sys.exc_info()[0]
 
 
 while True:
