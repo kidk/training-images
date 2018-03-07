@@ -33,23 +33,23 @@ app.use((req, res, next) => {
   next()
 })
 
-// var redis = require("redis"),
-//   client = redis.createClient({
-//     "host": process.env.REDIS_HOST
-//   });
+var redis = require("redis"),
+  client = redis.createClient({
+    "host": process.env.REDIS_HOST
+  });
 
-// var amqp = require('amqplib/callback_api');
-// var channel;
-// var q = 'messages';
-// amqp.connect('amqp://' + process.env.RABBITMQ_HOST, function (err, conn) {
-//   conn.createChannel(function (err, ch) {
-
-//     ch.assertQueue(q, {
-//       durable: false
-//     });
-//     channel = ch;
-//   });
-// });
+var amqp = require('amqplib/callback_api');
+var channel;
+var q = 'messages';
+amqp.connect('amqp://' + process.env.RABBITMQ_HOST, function (err, conn) {
+  console.log(err);
+  conn.createChannel(function (err, ch) {
+    ch.assertQueue(q, {
+      durable: false
+    });
+    channel = ch;
+  });
+});
 
 app.get('/ranking', function (req, res) {
   var result = [];
@@ -59,18 +59,18 @@ app.get('/ranking', function (req, res) {
     elements.push("string" + i);
   }
 
-  // client.mget(elements, function (err, reply) {
+  client.mget(elements, function (err, reply) {
 
-  //   for (var i = 0; i < 10; i++) {
-  //     result.push({
-  //       "position": i + 1,
-  //       "value": reply[i]
-  //     });
-  //   }
+    for (var i = 0; i < 10; i++) {
+      result.push({
+        "position": i + 1,
+        "value": reply[i]
+      });
+    }
 
-  //   res.send(JSON.stringify(result));
+    res.send(JSON.stringify(result));
 
-  // });
+  });
 });
 
 
@@ -83,23 +83,23 @@ app.get('/letters', function (req, res) {
     elements.push("alfa" + alphabet[i]);
   }
 
-  // client.mget(elements, function (err, reply) {
+  client.mget(elements, function (err, reply) {
 
-  //   for (var i = 0; i < alphabet.length; i++) {
-  //     result.push({
-  //       "letter": alphabet[i],
-  //       "value": reply[i]
-  //     });
-  //   }
+    for (var i = 0; i < alphabet.length; i++) {
+      result.push({
+        "letter": alphabet[i],
+        "value": reply[i]
+      });
+    }
 
-  //   res.send(JSON.stringify(result));
+    res.send(JSON.stringify(result));
 
-  // });
+  });
 });
 
 app.post('/post', function (req, res) {
-  // var result = channel.sendToQueue(q, new Buffer(req.body.text));
-  // res.send(JSON.stringify(result));
+  var result = channel.sendToQueue(q, new Buffer(req.body.text));
+  res.send(JSON.stringify(result));
 });
 
 // Provide prometheus endpoint to collect data
