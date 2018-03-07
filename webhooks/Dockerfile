@@ -1,6 +1,8 @@
 FROM ubuntu:16.04
 MAINTAINER Frederick Ryckbosch <fred@coscale.com>
 
+ENV PYTHONUNBUFFERED 0
+
 ENV FTP_URL ftp://debug-store/
 
 RUN apt-get update && apt-get install -y curl apt-transport-https python3 python3-pip && \
