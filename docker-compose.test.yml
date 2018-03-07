@@ -1,0 +1,159 @@
+version: "3"
+services:
+  generator:
+    build: ./generator/
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    networks:
+      - demo-app
+
+    links:
+      - web
+
+    volumes:
+      - ./generator/:/usr/src/app/
+
+    environment:
+      WEB_HOST: web
+      RECEIVER_HOST: receiver
+
+  web:
+    build: ./web/
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    networks:
+      - demo-app
+
+    ports:
+      - "80:80"
+
+    volumes:
+      - ./web/app/:/var/www/app/
+
+    environment:
+      RECEIVER_HOST: receiver
+
+    links:
+      - receiver
+
+  receiver:
+    build: ./receiver/
+
+    deploy:
+      mode: global
+
+    networks:
+      - demo-app
+
+    volumes:
+      - ./receiver/:/home/node/app/
+
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      REDIS_HOST: redis
+
+    links:
+      - rabbitmq
+      - redis
+
+  rabbitmq:
+    build: ./rabbitmq/
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    networks:
+      - demo-app
+
+  redis:
+    image: redis
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    networks:
+      - demo-app
+
+  mysql:
+    build: ./mysql/
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    networks:
+      - demo-app
+
+  processor:
+    build: ./processor/
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    networks:
+      - demo-app
+
+    volumes:
+      - ./processor/:/usr/src/app/
+
+    environment:
+      DATABASE_HOST: mysql
+      RABBITMQ_HOST: rabbitmq
+
+    links:
+      - mysql
+      - rabbitmq
+
+  calcletters:
+    build: ./calc_letters/
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    networks:
+      - demo-app
+
+    environment:
+      DATABASE_HOST: mysql
+      REDIS_HOST: redis
+      LOOP: "True"
+
+    links:
+     - mysql
+     - redis
+
+  calcwords:
+    build: ./calc_words/
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    networks:
+      - demo-app
+
+    volumes:
+      - ./calc_words/:/usr/src/app/
+
+    environment:
+      DATABASE_HOST: mysql
+      REDIS_HOST: redis
+      LOOP: "True"
+
+    links:
+     - mysql
+     - redis
+
+networks:
+    demo-app:
+
