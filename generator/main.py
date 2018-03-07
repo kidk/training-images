@@ -33,6 +33,10 @@ def request_get():
     try:
         print "get request"
         requests.get("http://%s" % WEB_HOST)
+        requests.get("http://%s/stats" % WEB_HOST)
+        requests.get("http://%s/stats/ranking" % WEB_HOST)
+        requests.get("http://%s/stats/letters" % WEB_HOST)
+        requests.get("http://%s/submit" % WEB_HOST)
     except: # catch *all* exceptions
         print "Exception: %s" % sys.exc_info()[0]
 
