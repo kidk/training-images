@@ -19,8 +19,6 @@ $app->post('/submit/post', function (Request $request, Response $response, array
     curl_setopt($ch, CURLOPT_URL,"http://".RECEIVER_HOST."/post");
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_VERBOSE, true);
-    curl_setopt($ch, CURLOPT_STDERR, fopen('/var/log/php-error.log', 'w'));
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json',
         'Content-Length: ' . strlen($data))
