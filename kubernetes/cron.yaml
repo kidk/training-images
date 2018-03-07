@@ -4,6 +4,7 @@ metadata:
   labels:
     name: cron-monitor
   name: cron-monitor
+  namespace: coscale-micro
 spec:
   template:
     metadata:

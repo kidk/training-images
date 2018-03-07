@@ -4,6 +4,7 @@ metadata:
   name: webhooks
   labels:
     app: webhooks
+  namespace: coscale-micro
 spec:
   ports:
   - port: 80
@@ -15,6 +16,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: webhooks
+  namespace: coscale-micro
 spec:
   replicas: 1
   template:

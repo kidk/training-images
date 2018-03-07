@@ -6,22 +6,12 @@ Set of images used in CoScale demo and training environment. **Do not deploy the
 
 ### Kubernetes
 
-```
-kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/mysql.yaml
-kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/rabbitmq.yaml
-kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/redis.yaml
-kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/receiver.yaml
-kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/web.yaml
-kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/services.yaml
-kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/calc_letters.yaml
-kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/calc_words.yaml
-kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/generator.yaml
-kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/processor.yaml
-```
+[Kubernetes deploy example](deploy-kubernetes.sh)
+
+### Openshift
+
+[Openshift deploy example](deploy-openshift.sh)
 
 ### Docker Swarm
 
-```
-curl https://raw.githubusercontent.com/kidk/training-images/master/docker-swarm/docker-compose.yml > docker-compose.yml
-docker stack deploy --compose-file docker-compose.yml words
-```
+[Docker Swarm deploy example](deploy-swarm.sh)
