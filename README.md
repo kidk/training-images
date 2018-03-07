@@ -11,7 +11,7 @@ kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/k
 kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/rabbitmq.yaml
 kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/redis.yaml
 kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/receiver.yaml
-kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/nginx.yaml
+kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/web.yaml
 kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/services.yaml
 kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/calc_letters.yaml
 kubectl apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/calc_words.yaml

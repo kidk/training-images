@@ -11,7 +11,7 @@ kubectl apply -f kubernetes/mysql.yaml -n $NAMESPACE
 kubectl apply -f kubernetes/rabbitmq.yaml -n $NAMESPACE
 kubectl apply -f kubernetes/redis.yaml -n $NAMESPACE
 kubectl apply -f kubernetes/receiver.yaml -n $NAMESPACE
-kubectl apply -f kubernetes/nginx.yaml -n $NAMESPACE
+kubectl apply -f kubernetes/web.yaml -n $NAMESPACE
 kubectl apply -f kubernetes/services.yaml -n $NAMESPACE
 kubectl apply -f kubernetes/calc_letters.yaml -n $NAMESPACE
 kubectl apply -f kubernetes/calc_words.yaml -n $NAMESPACE

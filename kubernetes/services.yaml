@@ -14,9 +14,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: web
   labels:
-    app: nginx
+    app: web
 spec:
   type: NodePort
   ports:
@@ -24,7 +24,7 @@ spec:
     nodePort: 30080
     protocol: TCP
   selector:
-    app: nginx
+    app: web
 ---
 apiVersion: v1
 kind: Service

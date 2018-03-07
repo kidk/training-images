@@ -1,21 +1,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: nginx
+  name: web
 spec:
   replicas: 3
   template:
     metadata:
       labels:
-        app: nginx
+        app: web
     spec:
       containers:
-      - name: nginx
-        image: kidk/training-images-nginx
+      - name: web
+        image: kidk/training-images-web
         imagePullPolicy: Always
         ports:
         - containerPort: 80
         env:
         - name: RECEIVER_HOST
           value: receiver
-      
+

@@ -1,0 +1,23 @@
+<h2>Submit new text</h2>
+<form>
+<div class="form-group">
+    <label class="sr-only" for="text">Text: </label>
+    <input type="text" class="form-control" id="text" value="one two one two one two tree one one one" placeholder="....">
+</div>
+<button type="button" id="submit" class="btn btn-primary">Submit text</button>
+</form>
+
+<script type="text/javascript">
+$(function() {
+    $("#submit").click(function(e){
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: '/submit/post',
+            data: {
+                "text": $("#text").val()
+            }
+        });
+    });
+});
+</script>

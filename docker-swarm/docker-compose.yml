@@ -10,7 +10,7 @@ services:
     networks:
     - demo-app
 
-    links: 
+    links:
     - web
 
     environment:
@@ -18,7 +18,7 @@ services:
       RECEIVER_HOST: receiver
 
   web:
-    image: kidk/training-images-nginx
+    image: kidk/training-images-web
 
     deploy:
       mode: replicated
@@ -26,7 +26,7 @@ services:
 
     networks:
       - demo-app
-    
+
     ports:
       - "80:80"
 
@@ -36,7 +36,7 @@ services:
     links:
       - receiver
 
-  receiver: 
+  receiver:
     image: kidk/training-images-receiver
 
     deploy:
@@ -52,7 +52,7 @@ services:
     links:
       - rabbitmq
       - redis
-  
+
   rabbitmq:
     image: kidk/training-images-rabbitmq
 
@@ -62,7 +62,7 @@ services:
 
     networks:
       - demo-app
-    
+
   redis:
     image: redis
 
@@ -86,17 +86,17 @@ services:
   processor:
     image: kidk/training-images-processor
 
-    deploy: 
+    deploy:
       mode: replicated
       replicas: 1
-    
+
     networks:
       - demo-app
-    
+
     environment:
       DATABASE_HOST: mysql
       RABBITMQ_HOST: rabbitmq
-    
+
     links:
       - mysql
       - rabbitmq
@@ -104,38 +104,38 @@ services:
   calcletters:
     image: kidk/training-images-calc_letters
 
-    deploy: 
+    deploy:
       mode: replicated
       replicas: 1
-    
+
     networks:
       - demo-app
-    
+
     environment:
       DATABASE_HOST: mysql
       REDIS_HOST: redis
       LOOP: "True"
 
-    links: 
+    links:
      - mysql
      - redis
 
   calcwords:
     image: kidk/training-images-calc_words
 
-    deploy: 
+    deploy:
       mode: replicated
       replicas: 1
-    
+
     networks:
       - demo-app
-    
+
     environment:
       DATABASE_HOST: mysql
       REDIS_HOST: redis
       LOOP: "True"
 
-    links: 
+    links:
      - mysql
      - redis
 
@@ -148,8 +148,8 @@ services:
     volumes:
     - /:/host:ro
 
-    
-    
+
+
 networks:
     demo-app:
 

@@ -15,6 +15,6 @@ spec:
         imagePullPolicy: Always
         env:
         - name: WEB_HOST
-          value: nginx
+          value: web
         - name: RECEIVER_HOST
           value: receiver

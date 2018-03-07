@@ -23,7 +23,7 @@ COMMAND=$1
 
 if [ "$COMMAND" == "all" ]; then
   build haproxy
-  build nginx
+  build web
   build receiver
   build redis
   build rabbitmq
