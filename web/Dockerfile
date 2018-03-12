@@ -16,6 +16,6 @@ COPY apache2.conf /etc/apache2/apache2.conf
 COPY status-page.conf /etc/apache2/conf-enabled/status-page.conf
 
 COPY app/ /var/www/app/
-COPY --from=composer /src/app/vendor /var/www/vendor
+COPY --from=composer /src/app/vendor /var/www/app/vendor
 
 LABEL com.coscale.monitoring='[{"PluginType":"APACHE","Configuration":{"FILE":["\"/dev/stdout\" \"%V \"%r\" %D %s %I %O\""],"STATS URL":["http://localhost/server-status"],"URL CHECK":["http://localhost/"]}}]'
