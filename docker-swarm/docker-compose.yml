@@ -28,7 +28,7 @@ services:
       - demo-app
 
     ports:
-      - "80:80"
+      - "30080:80"
 
     environment:
       RECEIVER_HOST: receiver
