@@ -8,6 +8,8 @@ RUN composer install --no-dev
 FROM php:7.1-apache
 MAINTAINER Samuel Vandamme <samuel.vandamme@coscale.com>
 
+EXPOSE 80
+
 ENV RECEIVER_HOST receiver
 
 RUN a2enmod rewrite
