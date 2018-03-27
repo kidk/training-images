@@ -16,7 +16,7 @@ $app->post('/submit/post', function (Request $request, Response $response, array
 
     // Send to receiver
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL,"http://".RECEIVER_HOST."/post");
+    curl_setopt($ch, CURLOPT_URL,"http://".RECEIVER_HOST.":8080/post");
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -44,12 +44,12 @@ $app->get('/stats', function (Request $request, Response $response, array $args)
 });
 
 $app->get('/stats/ranking', function (Request $request, Response $response, array $args) {
-    $data = file_get_contents('http://'.RECEIVER_HOST.'/ranking');
+    $data = file_get_contents('http://'.RECEIVER_HOST.':8080/ranking');
     return $response->withJson(json_decode($data));
 });
 
 $app->get('/stats/letters', function (Request $request, Response $response, array $args) {
-    $data = file_get_contents('http://'.RECEIVER_HOST.'/letters');
+    $data = file_get_contents('http://'.RECEIVER_HOST.':8080/letters');
     return $response->withJson(json_decode($data));
 });
 

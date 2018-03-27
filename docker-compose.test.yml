@@ -31,7 +31,7 @@ services:
       - demo-app
 
     ports:
-      - "80:80"
+      - "80:8080"
 
     volumes:
       - ./web/app/:/var/www/app/

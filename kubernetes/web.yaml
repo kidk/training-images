@@ -15,7 +15,7 @@ spec:
         image: kidk/training-images-web
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
         - name: RECEIVER_HOST
           value: receiver
