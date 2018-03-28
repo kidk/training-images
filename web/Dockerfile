@@ -21,4 +21,7 @@ COPY status-page.conf /etc/apache2/conf-enabled/status-page.conf
 COPY app/ /var/www/app/
 COPY --from=composer /src/app/vendor /var/www/app/vendor
 
+# Statically set user and group for Openshift
+USER 33:33
+
 LABEL com.coscale.monitoring='[{"PluginType":"APACHE","Configuration":{"FILE":["\"/dev/stdout\" \"%V \"%r\" %D %s %I %O\""],"STATS URL":["http://localhost:8080/server-status"],"URL CHECK":["http://localhost:8080/"]}}]'
