@@ -4,7 +4,6 @@ metadata:
   name: mysql
   labels:
     app: mysql
-  namespace: coscale-micro
 spec:
   ports:
   - port: 3306
@@ -18,7 +17,6 @@ metadata:
   name: web
   labels:
     app: web
-  namespace: coscale-micro
 spec:
   type: NodePort
   ports:
@@ -34,7 +32,6 @@ metadata:
   name: rabbitmq
   labels:
     app: rabbitmq
-  namespace: coscale-micro
 spec:
   ports:
   - port: 5672
@@ -48,7 +45,6 @@ metadata:
   name: receiver
   labels:
     app: receiver
-  namespace: coscale-micro
 spec:
   ports:
   - port: 8080
@@ -62,7 +58,6 @@ metadata:
   name: redis
   labels:
     app: redis
-  namespace: coscale-micro
 spec:
   ports:
   - port: 6379

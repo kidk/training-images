@@ -4,8 +4,11 @@
 # This script will deploy the latest version of our application in Kubernetes
 #
 
-oadm new-project coscale-micro
-oc project coscale-micro
+NAMESPACE=${1:-coscale-micro}
+
+oadm new-project $NAMESPACE
+oc project $NAMESPACE
+oadm policy add-scc-to-user anyuid -z default
 oc apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/mysql.yaml
 oc apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/rabbitmq.yaml
 oc apply -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/redis.yaml

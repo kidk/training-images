@@ -2,7 +2,6 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: generator
-  namespace: coscale-micro
 spec:
   replicas: 4
   template:

@@ -2,7 +2,6 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: web
-  namespace: coscale-micro
 spec:
   replicas: 3
   template:
