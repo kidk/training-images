@@ -84,15 +84,17 @@ public class App {
             letterOccurences.put(c, 0);
         }
 
+        int counter = 0;
         for (String word : wordOccurences.keySet()) {
             int occurrences = wordOccurences.get(word);
-            System.out.println(String.format("Processing word: %s (%d)", word, occurrences));
+            counter++;
             for (char c : word.toLowerCase().toCharArray()) {
                 if (letterOccurences.containsKey(c)) {
                     letterOccurences.put(c, letterOccurences.get(c) + occurrences);
                 }
             }
         }
+        System.out.println(String.format("Processed %d words", counter));
 
         return letterOccurences;
     }
