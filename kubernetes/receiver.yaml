@@ -20,3 +20,9 @@ spec:
           value: rabbitmq
         - name: REDIS_HOST
           value: redis
+        requests:
+          memory: "256Mi"
+          cpu: "20m"
+        limits:
+          memory: "512Mi"
+          cpu: "80m"
