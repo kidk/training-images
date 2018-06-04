@@ -7,6 +7,7 @@
 NAMESPACE=${1:-coscale-micro}
 
 kubectl create namespace $NAMESPACE
+kubectl apply -n $NAMESPACE -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/namespace_quota.yaml
 kubectl apply -n $NAMESPACE -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/mysql.yaml
 kubectl apply -n $NAMESPACE -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/rabbitmq.yaml
 kubectl apply -n $NAMESPACE -f https://raw.githubusercontent.com/kidk/training-images/master/kubernetes/redis.yaml
