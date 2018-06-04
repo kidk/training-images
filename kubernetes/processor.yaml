@@ -18,10 +18,10 @@ spec:
           value: mysql
         - name: RABBITMQ_HOST
           value: rabbitmq
-      resources:
-        requests:
-          memory: "64Mi"
-          cpu: "10m"
-        limits:
-          memory: "128Mi"
-          cpu: "30m"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "10m"
+          limits:
+            memory: "128Mi"
+            cpu: "30m"
