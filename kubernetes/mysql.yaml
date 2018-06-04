@@ -22,9 +22,10 @@ spec:
       volumes:
       - name: mysql-data
         emptyDir: {}
-      requests:
-        memory: "1024Mi"
-        cpu: "1"
-      limits:
-        memory: "2048Mi"
-        cpu: "2"
+      resources:
+        requests:
+          memory: "1024Mi"
+          cpu: "1"
+        limits:
+          memory: "2048Mi"
+          cpu: "2"
