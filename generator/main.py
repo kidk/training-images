@@ -16,11 +16,7 @@ words = data.split(" ")
 print "Found %s possible words" % len(words)
 
 def random_word():
-    result = ""
-    for number in range(1, random.randint(2, 5)):
-        result = result + random.choice (words)
-
-    return result
+    return random.choice (words)
 
 def random_sentence():
     result = ""
