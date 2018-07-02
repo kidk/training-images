@@ -4,7 +4,8 @@ import MySQLdb
 import time
 import os
 
-db = MySQLdb.connect(host=os.environ.get("DATABASE_HOST"), user=os.environ.get("DATABASE_USER"), passwd=os.environ.get("DATABASE_PASS"), db=os.environ.get("DATABASE_TABLE"))        
+CLEANUP_THRESHOLD = os.environ.get("CLEANUP_THRESHOLD")
+db = MySQLdb.connect(host=os.environ.get("DATABASE_HOST"), user=os.environ.get("DATABASE_USER"), passwd=os.environ.get("DATABASE_PASS"), db=os.environ.get("DATABASE_TABLE"))
 
 # Create database for results
 cur = db.cursor()
@@ -36,10 +37,16 @@ def callback(ch, method, properties, body):
         cur.execute("UPDATE words SET number = number + 1 WHERE word = '%s'" % word)
 
         db.commit()
-        
+
     time_taken = time.time() - start
     print("Finished processing %s in %s ms" % (body, time_taken))
 
+    print("Starting cleanup")
+    cur.execute("SELECT COUNT(id) FROM words")
+    amount = cur.fetchone()[0]
+    if amount > CLEANUP_THRESHOLD:
+        cur.execute("DELETE FROM words LIMIT %s" % (amount - CLEANUP_THRESHOLD))
+    print("Finished cleanup")
 
 # Wait for message
 channel.basic_consume(callback,
