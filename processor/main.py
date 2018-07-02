@@ -46,6 +46,7 @@ def callback(ch, method, properties, body):
     print("Starting cleanup, found %s rows" % amount)
     if amount > CLEANUP_THRESHOLD:
         cur.execute("DELETE FROM words LIMIT 1000")
+        db.commit()
     print("Finished cleanup")
 
 # Wait for message
