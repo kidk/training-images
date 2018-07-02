@@ -41,11 +41,11 @@ def callback(ch, method, properties, body):
     time_taken = time.time() - start
     print("Finished processing %s in %s ms" % (body, time_taken))
 
-    print("Starting cleanup")
     cur.execute("SELECT COUNT(id) FROM words")
     amount = cur.fetchone()[0]
+    print("Starting cleanup, found %s rows" % amount)
     if amount > CLEANUP_THRESHOLD:
-        cur.execute("DELETE FROM words LIMIT %s" % (amount - CLEANUP_THRESHOLD))
+        cur.execute("DELETE FROM words LIMIT 1000")
     print("Finished cleanup")
 
 # Wait for message
